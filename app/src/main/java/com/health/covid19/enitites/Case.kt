@@ -15,6 +15,6 @@ data class Case (
     val deathsPerOneMillion: Long,
     val tests: Long,
     val testsPerOneMillion: Long,
-    val continent: Continent
+    val continent: String
 )
 
