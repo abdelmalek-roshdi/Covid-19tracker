@@ -1,42 +1,33 @@
 package com.health.covid19
 
-import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.health.covid19.app.Covid19TrackerApp
 import com.health.covid19.enitites.Case
-import com.health.covid19.net.CaseApi
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.health.covid19.viewmodels.CasesViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    @Inject lateinit var caseApi:CaseApi
+
+    @Inject lateinit var modelFactory: ViewModelProvider.Factory
+    private lateinit var model: CasesViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         (application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
 
-        caseApi.getCases().enqueue(object : Callback<ArrayList<Case>>{
-            override fun onFailure(call: Call<ArrayList<Case>>, t: Throwable) {
-                Log.d("tag", "failed")
+        model = modelFactory.create(CasesViewModel::class.java)
+        model.getCaseForCountryName("USA").observe(this, object : Observer<Case>{
+            override fun onChanged(t: Case?) {
+                Log.d("casesssssss", t.toString())
             }
-
-            override fun onResponse(
-                call: Call<ArrayList<Case>>,
-                response: Response<ArrayList<Case>>
-            ) {
-
-               response.body()!!.forEach {
-                   Log.d("case", it.toString())
-               }
-            }
-
         })
+
+
 
     }
 }

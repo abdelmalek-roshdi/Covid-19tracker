@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4485FD"
+    tools:context=".CountryInfoPage">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="146dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginBottom="248dp"
+        android:src="@drawable/ic_bacteria"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        tools:layout_conversion_absoluteHeight="107dp"
+        tools:layout_conversion_absoluteWidth="107dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="410dp"
+        android:layout_height="165dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="172dp"
+        tools:layout_conversion_absoluteWidth="411dp">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="371dp"
+            android:layout_height="1dp"
+            android:src="@drawable/ic_line_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="124dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Country"
+            android:textColor="#090909"
+            android:textColorHint="#050505"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imageView6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="133dp"
+        android:layout_height="133dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="47dp"
+        android:src="@drawable/ic_bacteria"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_conversion_absoluteHeight="107dp"
+        tools:layout_conversion_absoluteWidth="107dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="156dp"
+        android:layout_height="168dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="106dp"
+        android:src="@drawable/ic_bacteria"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        tools:layout_conversion_absoluteHeight="107dp"
+        tools:layout_conversion_absoluteWidth="107dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="111dp"
+        android:layout_height="107dp"
+        android:layout_marginBottom="201dp"
+        android:src="@drawable/ic_bacteria"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_conversion_absoluteHeight="107dp"
+        tools:layout_conversion_absoluteWidth="107dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="381dp"
+        android:layout_height="291dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="#7CAAFD"
+        android:backgroundTint="#7CAAFD"
+        app:cardCornerRadius="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="377dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#7CAAFD"
+        android:backgroundTint="#7CAAFD"
+        app:cardCornerRadius="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
