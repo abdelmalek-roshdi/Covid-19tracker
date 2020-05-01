@@ -16,12 +16,11 @@ import javax.inject.Singleton
 class ServiceModule {
     @Provides
     @ApplicationScope
-    fun provideCaseApi(@Named(NetworkModule.BASE_URL) baseURL: String, client: OkHttpClient, gsonConverterFactory: GsonConverterFactory, moshiConverterFactory: MoshiConverterFactory) =
+    fun provideCaseApi(@Named(NetworkModule.BASE_URL) baseURL: String, client: OkHttpClient, moshiConverterFactory: MoshiConverterFactory) =
         Retrofit
         .Builder()
         .baseUrl(baseURL)
         .client(client)
-        .addConverterFactory(gsonConverterFactory)
         .addConverterFactory(moshiConverterFactory)
         .build()
         .create(CaseApi::class.java)

@@ -3,9 +3,10 @@ package com.health.covid19.data
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.CountryInfo
 import com.health.covid19.net.CaseApi
+import com.health.covid19.room.CaseDao
 
 
-class CasesRepositoryImpl(private val caseApi: CaseApi) : CasesRepository {
+class CasesRepositoryImpl(private val caseApi: CaseApi, caseDao: CaseDao) : CasesRepository {
 
     override suspend fun getCases(): List<Case>? {
         return  caseApi.getCases()
