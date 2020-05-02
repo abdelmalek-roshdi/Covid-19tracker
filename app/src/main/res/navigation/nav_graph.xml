@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/countryInfoPage">
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.health.covid19.ui.main.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/countryInfoPage"
+        android:name="com.health.covid19.ui.main.CountryInfoPage"
+        android:label="country_info_page_fragment"
+        tools:layout="@layout/country_info_page_fragment" />
 </navigation>

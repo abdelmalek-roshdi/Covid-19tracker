@@ -15,7 +15,10 @@ interface CaseDao {
     fun getAllCases(): LiveData<List<Case>>
 
     @Query("SELECT * FROM case_table where isSubcribed")
-    fun getSubcsribesCase(): LiveData<List<Case>>
+    fun getSubcsribesCase(): LiveData<Case>
+
+    @Query("SELECT * FROM case_table where country= :CountryName")
+     fun getCountryCaseByname(CountryName:String): LiveData<Case>
 
     @Insert(onConflict = REPLACE)
     suspend fun insert(case: Case)

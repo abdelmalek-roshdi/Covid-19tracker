@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/country_name"
         android:layout_width="93dp"
         android:layout_height="33dp"
         android:text="frag1"

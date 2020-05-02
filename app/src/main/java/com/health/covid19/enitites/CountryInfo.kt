@@ -1,9 +1,6 @@
 package com.health.covid19.enitites
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+
 import com.squareup.moshi.Json
 
 //@Entity(tableName = "countryInfo_table")
