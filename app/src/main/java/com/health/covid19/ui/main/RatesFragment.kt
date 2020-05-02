@@ -1,5 +1,6 @@
 package com.health.covid19.ui.main
 
+import android.os.Build.VERSION_CODES.O
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,23 +33,29 @@ class RatesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.rates_fragment, container, false)
+        val view = inflater.inflate(R.layout.rates_fragment, container, false)
+
+        initViews(view)
+        observeData()
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initViews(view)
-        observeData()
+
+
     }
 
     private fun observeData() {
         (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
         model = modelFactory.create(CasesViewModel::class.java)
-        model.cases.observe(requireActivity(), object : Observer<List<Case>> {
-            override fun onChanged(t: List<Case>?) {
+        model.cases.observe(requireActivity(),
+            Observer<List<Case>> { t ->
                 countryRatesAdapter.submitList(t)
+                Log.d("sub","sub")
 
-            }
-        })
+                // countryRatesAdapter.submitList(model.cases.value?.filter { case -> case.country.startsWith("s", true) })
+
+            })
     }
 
     private fun initViews(view: View) {
@@ -56,5 +63,10 @@ class RatesFragment : Fragment() {
         countryRatesAdapter = CountryRatesAdapter()
         countriesRecyclerView.layoutManager = LinearLayoutManager(activity)
         countriesRecyclerView.adapter = countryRatesAdapter
+    }
+
+    override fun onDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu()
+        Log.d("dest","dest")
     }
 }

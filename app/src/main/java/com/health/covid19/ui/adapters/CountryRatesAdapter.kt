@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.health.covid19.R
 import com.health.covid19.enitites.Case
+import com.health.covid19.ui.main.CountryInfoPage
+import com.health.covid19.ui.main.MainFragmentDirections
 import kotlinx.android.synthetic.main.country_rates_item.view.*
-import javax.inject.Inject
 
 class CountryRatesAdapter(callback: DiffUtil.ItemCallback<Case> = diffCallback) :
     ListAdapter<Case, CountryRatesAdapter.CountryRatesViewHolder>(callback) {
@@ -62,6 +64,12 @@ class CountryRatesAdapter(callback: DiffUtil.ItemCallback<Case> = diffCallback) 
         ratesHolder.confirmed_number_textView.text = case.cases.toString()
         ratesHolder.recovered_number_textView.text = case.recovered.toString()
         ratesHolder.deaths_number_textView.text = case.deaths.toString()
+
+        ratesHolder.itemView.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToCountryInfoPage(case.country)
+            Navigation.findNavController(it).navigate(action)
+
+        }
 
     }
 }

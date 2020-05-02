@@ -2,6 +2,7 @@ package com.health.covid19.ui.main
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -20,11 +21,13 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        val view = inflater.inflate(R.layout.main_fragment, container, false)
+        initViews(view)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initViews(view)
+
     }
 
     private fun initViews(view: View) {
