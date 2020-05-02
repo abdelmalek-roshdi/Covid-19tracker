@@ -3,16 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout
+    <RelativeLayout
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:id="@+id/action_bar_layout"
-        android:orientation="vertical">
+        android:layout_height="42dp"
+        android:id="@+id/action_bar_layout">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_bactiria_black">
 
-    </LinearLayout>
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-28dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:id="@+id/title_textView"
+                android:textColor="@color/header_text_color"
+                android:text="@string/app_name"
+                android:gravity="center_vertical">
+
+            </TextView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/menu_textView"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="62dp"
+
+            android:padding="0dp"
+            android:text="image asset">
+
+        </TextView>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
