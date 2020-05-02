@@ -1,14 +1,12 @@
 package com.health.covid19.enitites
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 
-//@Entity(tableName = "countryInfo_table")
 data class CountryInfo (
     @field:Json(name = "_id")
+    @SerializedName("_id")
     var id: Long = 0,
     var iso2: String = "",
     var iso3: String = "",

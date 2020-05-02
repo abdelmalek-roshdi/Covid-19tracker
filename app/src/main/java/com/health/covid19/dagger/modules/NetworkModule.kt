@@ -29,6 +29,10 @@ class NetworkModule {
 
     @Provides
     @ApplicationScope
-    fun provideMoshiConverer() = MoshiConverterFactory.create()
+    fun provideGsonConveter() = GsonConverterFactory.create()
+
+    @Provides
+    @ApplicationScope
+    fun provideMoshiConveter() = MoshiConverterFactory.create()
 
 }

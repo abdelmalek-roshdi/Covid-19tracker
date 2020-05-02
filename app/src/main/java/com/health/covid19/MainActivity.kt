@@ -3,6 +3,9 @@ package com.health.covid19
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
+import android.view.MenuInflater
+import android.view.View
 import androidx.lifecycle.GeneratedAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,21 +22,9 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var modelFactory: ViewModelProvider.Factory
-    private lateinit var model: CasesViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        (application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
-
-        model = modelFactory.create(CasesViewModel::class.java)
-        model.getCaseForCountryName("USA").observe(this, object : Observer<Case>{
-            override fun onChanged(t: Case?) {
-                Log.d("casesssssss", t.toString())
-
-            }
-        })
-
     }
+
 }
