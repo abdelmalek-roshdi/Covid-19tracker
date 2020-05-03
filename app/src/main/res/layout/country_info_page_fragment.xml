@@ -22,8 +22,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="410dp"
-        android:layout_height="165dp"
+        android:layout_width="414dp"
+        android:layout_height="225dp"
         android:background="#FFFFFF"
         android:elevation="2dp"
 
@@ -34,6 +34,58 @@
         tools:layout_conversion_absoluteHeight="172dp"
         tools:layout_conversion_absoluteWidth="411dp">
 
+        <RelativeLayout
+            android:id="@+id/country_action_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_bactiria_black">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/title_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-28dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/app_name"
+                    android:textColor="@color/header_text_color"
+                    android:textSize="14sp"
+                    android:textStyle="bold">
+
+                </TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/menu_textView"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="62dp"
+
+                android:padding="0dp"
+                android:text="image asset">
+
+            </TextView>
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="371dp"
@@ -41,27 +93,31 @@
             android:src="@drawable/ic_line_4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.39" />
+            app:layout_constraintVertical_bias="0.575" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/country_name"
-            android:layout_width="124dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="183dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
             android:layout_marginBottom="2dp"
             android:fontFamily="sans-serif-thin"
             android:text="Country"
             android:textColor="#090909"
             android:textColorHint="#050505"
-            android:textSize="30sp"
             android:textStyle="bold"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="10sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/country_action_bar_layout"
+            app:layout_constraintVertical_bias="0.16" />
 
         <TextView
             android:id="@+id/textView4"
@@ -151,13 +207,13 @@
             android:id="@+id/country_flag"
             android:layout_width="82dp"
             android:layout_height="41dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="31dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="7dp"
             android:src="@android:drawable/ic_menu_crop"
-            app:layout_constraintBottom_toTopOf="@+id/imageView6"
+            app:layout_constraintBottom_toBottomOf="@+id/country_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/country_name"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -165,8 +221,8 @@
         android:id="@+id/imageView2"
         android:layout_width="133dp"
         android:layout_height="133dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_bacteria"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
     <TextView
         android:id="@+id/country_name"
         android:layout_width="93dp"
@@ -17,8 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.462" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,4 +28,4 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>
->>>>>>> a0634198adc778ada46dafb1ffa6b030a1ba9be2
+
