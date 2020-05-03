@@ -1,6 +1,5 @@
 package com.health.covid19.ui.main
 
-import android.os.Build.VERSION_CODES.O
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,8 +20,10 @@ import javax.inject.Inject
 
 
 class RatesFragment : Fragment() {
-    lateinit var countriesRecyclerView: RecyclerView
-    lateinit var countryRatesAdapter: CountryRatesAdapter
+    private lateinit var countriesRecyclerView: RecyclerView
+    private lateinit var countryRatesAdapter: CountryRatesAdapter
+    private lateinit var layoutManager: LinearLayoutManager
+    private var index:Int = 0
 
     @Inject
     lateinit var modelFactory: ViewModelProvider.Factory
@@ -40,6 +41,7 @@ class RatesFragment : Fragment() {
         return view
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
@@ -48,7 +50,7 @@ class RatesFragment : Fragment() {
     private fun observeData() {
         (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
         model = modelFactory.create(CasesViewModel::class.java)
-        model.cases.observe(requireActivity(),
+        model.offlineCases.observe(requireActivity(),
             Observer<List<Case>> { t ->
                 countryRatesAdapter.submitList(t)
                 Log.d("sub","sub")
@@ -56,6 +58,7 @@ class RatesFragment : Fragment() {
                 // countryRatesAdapter.submitList(model.cases.value?.filter { case -> case.country.startsWith("s", true) })
 
             })
+
     }
 
     private fun initViews(view: View) {
@@ -63,6 +66,18 @@ class RatesFragment : Fragment() {
         countryRatesAdapter = CountryRatesAdapter()
         countriesRecyclerView.layoutManager = LinearLayoutManager(activity)
         countriesRecyclerView.adapter = countryRatesAdapter
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //model.itemPostion = (countriesRecyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+     //   (countriesRecyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(model.itemPostion, 0)
+
     }
 
     override fun onDestroyOptionsMenu() {

@@ -14,7 +14,7 @@ class FragmentsAdapter (fragment: Fragment) : FragmentStateAdapter(fragment) {
         return when(position){
             0 ->  ratesFragment
             1 ->  statisticsFragment
-            else -> RatesFragment()
+            else -> StatisticsFragment()
         }
    }
 }

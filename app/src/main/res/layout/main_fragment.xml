@@ -9,7 +9,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="?actionBarSize"
         android:id="@+id/action_bar_layout"
         app:elevation="8dp">
 
@@ -17,17 +17,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/layout"
+            android:elevation="8dp"
             android:layout_centerHorizontal="true">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:id="@+id/header_img"
                 android:src="@drawable/ic_bactiria_black">
 
             </ImageView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="-28dp"
+                android:layout_marginStart="-25dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:id="@+id/title_textView"
@@ -51,14 +55,18 @@
             android:text="image asset">
 
         </TextView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_below="@+id/layout"
-            android:background="@color/confirmed_text_color">
-
-        </View>
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_below="@id/action_bar_layout"
+        android:layout_height="1dp"
+        android:id="@+id/line_view"
+        android:backgroundTint="@color/confirmed_text_color"
+        android:background="@color/confirmed_text_color">
+
+    </View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

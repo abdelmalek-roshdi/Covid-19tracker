@@ -1,14 +1,15 @@
 package com.health.covid19.data
 
+import androidx.lifecycle.LiveData
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.CountryInfo
 import com.health.covid19.net.CaseApi
 import com.health.covid19.room.CaseDao
 
 
-class CasesRepositoryImpl(private val caseApi: CaseApi, caseDao: CaseDao) : CasesRepository {
+class CasesRepositoryImpl constructor(private val caseApi: CaseApi, private val caseDao: CaseDao) : CasesRepository {
 
-    override suspend fun getCases(): List<Case>? {
+    override suspend fun getCases(): List<Case> {
         return  caseApi.getCases()
     }
 
@@ -16,12 +17,16 @@ class CasesRepositoryImpl(private val caseApi: CaseApi, caseDao: CaseDao) : Case
        return caseApi.getCasesForCountryName(countryName)
     }
 
-    override suspend fun getCasesOffline(): List<Case>? {
-        return null
+    override fun getCasesOffline(): LiveData<List<Case>> {
+       return caseDao.getAllCases()
     }
 
     override suspend fun getCaseForCountryOffline(countryName: String): Case? {
         return null
+    }
+
+    override suspend fun insertAll(cases: List<Case>) {
+        caseDao.insertAll(cases)
     }
 
 }

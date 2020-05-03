@@ -13,9 +13,14 @@ class CasesViewModel @Inject constructor(
     private val casesRepository: CasesRepository
 ): ViewModel() {
 
-      var cases: LiveData<List<Case>> = liveData(Dispatchers.IO){
-          casesRepository.getCases()?.let { emit(it) }
-     }
+      var cases:LiveData<List<Case>> = liveData {
+          emit(casesRepository.getCases())
+      }
+
+    var offlineCases = casesRepository.getCasesOffline()
+
+    var itemPostion = 0
+
 
     fun getCaseForCountryName(countryName :String): LiveData<Case>{
         val caseForCountry : LiveData<Case> = liveData(Dispatchers.IO) {

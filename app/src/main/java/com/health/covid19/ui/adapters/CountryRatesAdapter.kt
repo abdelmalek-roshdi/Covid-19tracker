@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.health.covid19.R
 import com.health.covid19.enitites.Case
-import com.health.covid19.ui.main.CountryInfoPage
 import com.health.covid19.ui.main.MainFragmentDirections
 import kotlinx.android.synthetic.main.country_rates_item.view.*
 
