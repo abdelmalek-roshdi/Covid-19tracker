@@ -2,7 +2,9 @@ package com.health.covid19.dagger.modules
 
 import android.app.Application
 import androidx.room.Room
+import androidx.work.WorkerFactory
 import com.health.covid19.dagger.scopes.ApplicationScope
+import com.health.covid19.dagger.workmanagerfactory.DaggerWorkerFactory
 import com.health.covid19.data.CasesRepository
 import com.health.covid19.data.CasesRepositoryImpl
 import com.health.covid19.data.CountryRepository
@@ -31,6 +33,12 @@ class DataModule {
     @Provides
     @ApplicationScope
     fun provideCountryRepository(caseApi: CaseApi, caseDao: CaseDao): CountryRepository = CountryRepositoryImp(caseApi, caseDao)
+
+    @Provides
+    @ApplicationScope
+    fun workerFactory(casesRepository: CasesRepository): WorkerFactory {
+        return DaggerWorkerFactory(casesRepository)
+    }
 
 
 

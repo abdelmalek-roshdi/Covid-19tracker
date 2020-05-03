@@ -20,8 +20,10 @@ import javax.inject.Inject
 
 
 class RatesFragment : Fragment() {
-    lateinit var countriesRecyclerView: RecyclerView
-    lateinit var countryRatesAdapter: CountryRatesAdapter
+    private lateinit var countriesRecyclerView: RecyclerView
+    private lateinit var countryRatesAdapter: CountryRatesAdapter
+    private lateinit var layoutManager: LinearLayoutManager
+    private var index:Int = 0
 
     @Inject
     lateinit var modelFactory: ViewModelProvider.Factory
@@ -32,23 +34,31 @@ class RatesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.rates_fragment, container, false)
-    }
+        val view = inflater.inflate(R.layout.rates_fragment, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
         observeData()
+        return view
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
     }
 
     private fun observeData() {
         (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
         model = modelFactory.create(CasesViewModel::class.java)
-        model.cases.observe(requireActivity(), object : Observer<List<Case>> {
-            override fun onChanged(t: List<Case>?) {
+        model.offlineCases.observe(requireActivity(),
+            Observer<List<Case>> { t ->
                 countryRatesAdapter.submitList(t)
+                Log.d("sub","sub")
 
-            }
-        })
+                // countryRatesAdapter.submitList(model.cases.value?.filter { case -> case.country.startsWith("s", true) })
+
+            })
+
     }
 
     private fun initViews(view: View) {
@@ -56,5 +66,22 @@ class RatesFragment : Fragment() {
         countryRatesAdapter = CountryRatesAdapter()
         countriesRecyclerView.layoutManager = LinearLayoutManager(activity)
         countriesRecyclerView.adapter = countryRatesAdapter
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //model.itemPostion = (countriesRecyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+     //   (countriesRecyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(model.itemPostion, 0)
+
+    }
+
+    override fun onDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu()
+        Log.d("dest","dest")
     }
 }

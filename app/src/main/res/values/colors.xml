@@ -6,7 +6,7 @@
     <color name="Helper">#7CAAFD</color>
 
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryDark">#AEAEAE</color>
     <color name="colorAccent">#4485FD</color>
     <color name="header_text_color">#070707</color>
     <color name="card_header_text_color">#060606</color>

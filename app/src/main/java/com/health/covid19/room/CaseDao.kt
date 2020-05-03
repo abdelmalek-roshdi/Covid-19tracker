@@ -20,8 +20,15 @@ interface CaseDao {
     @Query("SELECT * FROM case_table where country= :CountryName")
      fun getCountryCaseByname(CountryName:String): LiveData<Case>
 
+    @Query("SELECT * FROM case_table where continent= :continent")
+    suspend fun getCaseBycontinent(continent:String): List<Case>
+
+
     @Insert(onConflict = REPLACE)
     suspend fun insert(case: Case)
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertAll(cases: List<Case>)
 
     @Query("DELETE FROM case_table")
     suspend fun deleteAll()

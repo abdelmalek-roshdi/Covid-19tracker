@@ -1,11 +1,13 @@
 package com.health.covid19.data
 
+import androidx.lifecycle.LiveData
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.CountryInfo
 
 interface CasesRepository {
-    suspend fun getCases() :List<Case>?
+    suspend fun getCases() :List<Case>
     suspend fun getCaseForCountry(countryName: String): Case?
-    suspend fun getCasesOffline(): List<Case>?
+    fun getCasesOffline(): LiveData<List<Case>>
     suspend fun getCaseForCountryOffline(countryName: String): Case?
+    suspend fun insertAll(cases: List<Case>)
 }
