@@ -10,4 +10,6 @@ interface CasesRepository {
     fun getCasesOffline(): LiveData<List<Case>>
     suspend fun getCaseForCountryOffline(countryName: String): Case?
     suspend fun insertAll(cases: List<Case>)
+    suspend fun insertCase(case: Case)
+    suspend fun getSubscribedCases(): List<Case>
 }
