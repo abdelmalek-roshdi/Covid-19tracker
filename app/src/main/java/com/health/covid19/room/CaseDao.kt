@@ -15,7 +15,7 @@ interface CaseDao {
     fun getAllCases(): LiveData<List<Case>>
 
     @Query("SELECT * FROM case_table where isSubcribed")
-    fun getSubcsribesCase(): LiveData<Case>
+    suspend fun getSubcsribesCases(): List<Case>
 
     @Query("SELECT * FROM case_table where country= :CountryName")
     suspend fun getCountryCaseByname(CountryName:String): Case

@@ -19,6 +19,10 @@ class CasesViewModel @Inject constructor(
 
     var offlineCases = casesRepository.getCasesOffline()
 
+    var subscribedCases = liveData<List<Case>> {
+        emit(casesRepository.getSubscribedCases())
+    }
+
     var itemPostion = 0
 
 

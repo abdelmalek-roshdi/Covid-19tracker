@@ -29,4 +29,12 @@ class CasesRepositoryImpl constructor(private val caseApi: CaseApi, private val 
         caseDao.insertAll(cases)
     }
 
+    override suspend fun getSubscribedCases(): List<Case> {
+        return  caseDao.getSubcsribesCases()
+    }
+
+    override suspend fun insertCase(case: Case) {
+        caseDao.insert(case)
+    }
+
 }
