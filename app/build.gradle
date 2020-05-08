@@ -44,7 +44,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // Room components
     implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+    kapt "androidx.room:room-compiler:$room_version"
+    // For Kotlin use kapt instead of annotationProcessor
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation "androidx.core:core-ktx:1.2.0"
@@ -69,7 +70,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-moshi:2.8.1'
 
     //Dagger2
-     implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation "com.google.dagger:dagger:$dagger2_version"
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation "com.google.dagger:dagger-android-support:$dagger2_version"
@@ -99,6 +100,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
     //chart
-    implementation  'com.github.hadiidbouk:ChartProgressBar-Android:2.0.6'
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+
+    //  implementation  'com.github.hadiidbouk:ChartProgressBar-Android:2.0.6'
+    //  implementation 'com.github.andhikayuana:simple-pie-chart-android:e7d9622aa9'
+
 
 }

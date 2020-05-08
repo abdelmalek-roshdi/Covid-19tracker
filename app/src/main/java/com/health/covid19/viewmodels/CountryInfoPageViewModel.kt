@@ -1,5 +1,6 @@
 package com.health.covid19.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -19,18 +20,23 @@ class CountryInfoPageViewModel  @Inject constructor(
 
 ): ViewModel() {
 
-    var isOnline = true
+
 
     fun getCaseForCountry(countryName :String): LiveData<Case> {
         val case : LiveData<Case> = liveData(Dispatchers.IO) {
-            if(isOnline) {
-                countryRepository.getCase(countryName)?.let { emit(it) }
-            }
-            else{getCaseForCountry(countryName)}
+
+            countryRepository.getCaseForCountryoffline(countryName)?.let { emit(it) }
+
+
         }
+        Log.i("TAG","***************************${case.value?.continent}")
+        print("***************************${case.value?.continent}")
         return  case
     }
 
+//    fun subscribe(case:Case){
+//        countryRepository.updateCountry(case = case)
+//    }
 
 
 }

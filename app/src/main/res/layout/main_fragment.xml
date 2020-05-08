@@ -41,20 +41,19 @@
 
             </TextView>
         </LinearLayout>
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/menu_textView"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_width="14dp"
+            android:layout_height="22dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="62dp"
-
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="18dp"
             android:padding="0dp"
-            android:text="image asset">
-
-        </TextView>
+            android:src="@drawable/ic_menu"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -58,4 +59,25 @@ class MainFragment : Fragment() {
     ) {
         activity?.menuInflater?.inflate(R.menu.main_menu, menu)
     }
+
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+
+
+            R.id.subscribe -> {
+                 findNavController().navigate(R.id.action_mainFragment_to_subscribedFragment)
+                true
+            }
+            R.id.settings -> {
+                findNavController().navigate(R.id.action_countryInfoPage_to_settingsFragment)
+                true
+            }
+
+            else -> super.onContextItemSelected(item)
+        }
+    }
+
+
 }
