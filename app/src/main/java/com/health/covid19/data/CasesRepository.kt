@@ -12,4 +12,6 @@ interface CasesRepository {
     suspend fun insertAll(cases: List<Case>)
     suspend fun insertCase(case: Case)
     suspend fun getSubscribedCases(): List<Case>
+    suspend fun update(case: Case)
+    suspend fun updateAll(cases: List<Case>)
 }

@@ -3,10 +3,12 @@ package com.health.covid19.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.health.covid19.data.CasesRepository
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.CountryInfo
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CasesViewModel @Inject constructor(
@@ -23,7 +25,16 @@ class CasesViewModel @Inject constructor(
         emit(casesRepository.getSubscribedCases())
     }
 
-    var itemPostion = 0
+
+    fun unsbcribeAllCountries(){
+       viewModelScope.launch(Dispatchers.IO) {
+           val cases :List<Case> = casesRepository.getSubscribedCases()
+           if (cases.isNotEmpty()) {
+               cases.forEach { it.isSubscribed = false }
+               casesRepository.updateAll(cases)
+           }
+       }
+    }
 
 
     fun getCaseForCountryName(countryName :String): LiveData<Case>{

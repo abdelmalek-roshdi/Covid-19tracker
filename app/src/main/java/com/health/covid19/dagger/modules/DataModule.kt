@@ -1,17 +1,17 @@
 package com.health.covid19.dagger.modules
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import androidx.work.WorkerFactory
 import com.health.covid19.dagger.scopes.ApplicationScope
 import com.health.covid19.dagger.workmanagerfactory.DaggerWorkerFactory
-import com.health.covid19.data.CasesRepository
-import com.health.covid19.data.CasesRepositoryImpl
-import com.health.covid19.data.CountryRepository
-import com.health.covid19.data.CountryRepositoryImp
+import com.health.covid19.data.*
 import com.health.covid19.net.CaseApi
 import com.health.covid19.room.CaseDao
 import com.health.covid19.room.LocalDB
+import com.health.covid19.util.sharedPreferencesName
 import dagger.Module
 import dagger.Provides
 
@@ -36,9 +36,18 @@ class DataModule {
 
     @Provides
     @ApplicationScope
+    fun provideStatisticsRepository(caseApi: CaseApi, caseDao: CaseDao): StatisticsRepository = StatististicsRepositoryImp(caseApi, caseDao)
+
+    @Provides
+    @ApplicationScope
     fun workerFactory(casesRepository: CasesRepository): WorkerFactory {
         return DaggerWorkerFactory(casesRepository)
     }
+
+    @Provides
+    @ApplicationScope
+    fun provideSharedPrefrences(application: Application): SharedPreferences = application.applicationContext.getSharedPreferences(sharedPreferencesName,
+        Context.MODE_PRIVATE)
 
 
 

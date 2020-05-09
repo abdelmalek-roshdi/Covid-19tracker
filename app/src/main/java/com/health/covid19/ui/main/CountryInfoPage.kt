@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.health.covid19.R
 import com.health.covid19.app.Covid19TrackerApp
 import com.health.covid19.enitites.Case
+import com.health.covid19.viewmodels.CasesViewModel
 import com.health.covid19.viewmodels.CountryInfoPageViewModel
 import kotlinx.android.synthetic.main.country_info_page_fragment.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
@@ -23,6 +24,7 @@ class CountryInfoPage : Fragment() {
     @Inject
     lateinit var provider: ViewModelProvider.Factory
     private lateinit var viewModel: CountryInfoPageViewModel
+    private lateinit var casesViewModel: CasesViewModel
 
     val args: CountryInfoPageArgs by navArgs()
     lateinit var currentCase:Case
@@ -71,6 +73,7 @@ class CountryInfoPage : Fragment() {
     private fun init() {
         (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
         viewModel = provider.create(CountryInfoPageViewModel::class.java)
+        casesViewModel = provider.create(CasesViewModel::class.java)
         setViewModel(args.countryName)
     }
 
@@ -88,7 +91,7 @@ class CountryInfoPage : Fragment() {
              per_million_cases.text=case.casesPerOneMillion.toString()
              per_million_deaths.text=case.deathsPerOneMillion.toString()
              per_million_test.text=case.testsPerOneMillion.toString()
-             isSubscribed=case.isSubcribed
+             isSubscribed=case.isSubscribed
              Log.i("TAG","***************************${case.continent}")
              print("***************************${case.continent}")
          })

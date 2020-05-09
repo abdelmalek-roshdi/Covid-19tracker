@@ -38,6 +38,9 @@ interface CaseDao {
 
     @Update
     suspend fun update(case: Case)
+
+    @Update
+    suspend fun updateAll(cases: List<Case>)
 }
 
 

@@ -111,6 +111,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="374dp"
                 android:layout_height="669dp"
+                android:id="@+id/subscribed_countries_recyclerView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

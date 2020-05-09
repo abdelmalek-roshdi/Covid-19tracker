@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.health.covid19.viewmodels.CasesViewModel
 import com.health.covid19.viewmodels.CountryInfoPageViewModel
+import com.health.covid19.viewmodels.StatisticsViewModel
 
 @Module
 abstract class ViewModelModule {
@@ -20,6 +21,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CountryInfoPageViewModel::class)
     internal abstract fun bindCountryInfoPageViewModel(countryInfoPageViewModel: CountryInfoPageViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StatisticsViewModel::class)
+    internal abstract fun bindStatisticsViewModel(statisticsViewModel: StatisticsViewModel): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

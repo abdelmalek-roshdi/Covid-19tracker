@@ -2,20 +2,31 @@ package com.health.covid19.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.health.covid19.R
+import com.health.covid19.app.Covid19TrackerApp
+import com.health.covid19.viewmodels.CasesViewModel
+import com.health.covid19.viewmodels.StatisticsViewModel
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
 import java.lang.Integer.parseInt
+import javax.inject.Inject
 
 
 class StatisticsFragment: Fragment() {
 
     private lateinit var data: PieChartData
+
+    @Inject
+    lateinit var modelFactory: ViewModelProvider.Factory
+    private lateinit var model: StatisticsViewModel
 
 
     override fun onCreateView(
@@ -31,6 +42,9 @@ class StatisticsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
+        model = modelFactory.create(StatisticsViewModel::class.java)
+
         setChart()
         america.setOnClickListener {
 

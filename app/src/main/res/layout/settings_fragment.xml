@@ -96,7 +96,7 @@
         android:src="@drawable/ic_line_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/eight_hours_radioButton" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -133,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/two_hours_radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -143,26 +143,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <RadioButton
-        android:id="@+id/radioButton2"
+        android:id="@+id/five_hours_radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="5 Hours"
-        app:layout_constraintEnd_toEndOf="@+id/radioButton"
+        app:layout_constraintEnd_toEndOf="@+id/two_hours_radioButton"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/radioButton"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+        app:layout_constraintStart_toStartOf="@+id/two_hours_radioButton"
+        app:layout_constraintTop_toBottomOf="@+id/two_hours_radioButton" />
 
     <RadioButton
-        android:id="@+id/radioButton3"
+        android:id="@+id/eight_hours_radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="8 Hours"
-        app:layout_constraintEnd_toEndOf="@+id/radioButton2"
+        app:layout_constraintEnd_toEndOf="@+id/five_hours_radioButton"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/radioButton2"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+        app:layout_constraintStart_toStartOf="@+id/five_hours_radioButton"
+        app:layout_constraintTop_toBottomOf="@+id/five_hours_radioButton" />
 
     <ImageView
         android:id="@+id/imageView13"
