@@ -5,7 +5,8 @@ import com.health.covid19.enitites.Case
 
 interface CountryRepository {
 
-        suspend fun getCase(countryName:String) : Case?
-        fun getCaseForCountryoffline(countryName: String): LiveData<Case>
+
+        suspend fun getCaseForCountryoffline(countryName: String): Case
+        suspend fun updateCountry(case:Case)
 
 }

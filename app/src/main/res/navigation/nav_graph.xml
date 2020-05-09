@@ -15,6 +15,12 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_subscribedFragment"
+            app:destination="@id/subscribedFragment" />
     </fragment>
     <fragment
         android:id="@+id/countryInfoPage"
@@ -24,5 +30,25 @@
         <argument
             android:name="countryName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_countryInfoPage_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_countryInfoPage_to_subscribedFragment"
+            app:destination="@id/subscribedFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.health.covid19.ui.main.StatisticsFragment"
+        android:label="StatisticsFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.health.covid19.ui.main.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+    <fragment
+        android:id="@+id/subscribedFragment"
+        android:name="com.health.covid19.ui.main.SubscribedFragment"
+        android:label="subscribed_fragment"
+        tools:layout="@layout/subscribed_fragment" />
 </navigation>
