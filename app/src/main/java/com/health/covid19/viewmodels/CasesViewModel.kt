@@ -36,6 +36,12 @@ class CasesViewModel @Inject constructor(
        }
     }
 
+    fun updateCase(case: Case){
+        viewModelScope.launch(Dispatchers.IO) {
+            casesRepository.update(case)
+        }
+    }
+
 
     fun getCaseForCountryName(countryName :String): LiveData<Case>{
         val caseForCountry : LiveData<Case> = liveData(Dispatchers.IO) {
