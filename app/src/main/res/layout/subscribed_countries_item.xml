@@ -9,12 +9,13 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="8dp"
-    android:background="@color/card_background_color"
+    android:background="#FF7CAAFD"
     app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#00FFFFFF">
 
         <Button
             android:id="@+id/unsubscribe"
@@ -27,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/country_name_textView"
+            android:id="@+id/country_textView"
             android:layout_width="95dp"
             android:layout_height="68dp"
             android:layout_marginStart="16dp"
@@ -82,7 +83,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/confirmed_number_textView"
+                    android:id="@+id/confirmed_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -124,7 +125,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/recovered_number_textView"
+                    android:id="@+id/recovered_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -166,7 +167,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/deaths_number_textView"
+                    android:id="@+id/deaths_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

@@ -1,9 +1,11 @@
 package com.health.covid19.ui.main
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,11 +26,12 @@ class CountryInfoPage : Fragment() {
     @Inject
     lateinit var provider: ViewModelProvider.Factory
     private lateinit var viewModel: CountryInfoPageViewModel
+    private lateinit var viewModel2: CasesViewModel
     private lateinit var casesViewModel: CasesViewModel
 
     val args: CountryInfoPageArgs by navArgs()
     lateinit var currentCase:Case
-    var isSubscribed:Boolean=false
+    var Subscribed:Boolean=false
 
 
 
@@ -46,60 +49,37 @@ class CountryInfoPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(!isSubscribed){
+        if(!Subscribed){
             subscribe.setBackgroundResource(R.drawable.ic_subscribe);
         }else{
             subscribe.setBackgroundResource(R.drawable.ic_unsubscribe);
         }
         subscribe.setOnClickListener {
-            if(!isSubscribed){
-                isSubscribed=true
-                //sunscribe here
+            if(!Subscribed){
+                Subscribed=true
+                Subscribe(true)
                 subscribe.setBackgroundResource(R.drawable.ic_unsubscribe);
+                val myToast = Toast.makeText(context,"Subscribed!",Toast.LENGTH_SHORT)
+                myToast.setGravity(Gravity.CENTER,0,200)
+                myToast.show()
 
             }else{
-                isSubscribed=false
-                //subscribe here
+                Subscribed=false
+                Subscribe(false)
                 subscribe.setBackgroundResource(R.drawable.ic_subscribe);
+                val myToast = Toast.makeText(context,"Unsubscribed!",Toast.LENGTH_SHORT)
+                myToast.setGravity(Gravity.CENTER,0,200)
+                myToast.show()
+
             }
 
         }
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         init()
     }
-
-    private fun init() {
-        (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
-        viewModel = provider.create(CountryInfoPageViewModel::class.java)
-        casesViewModel = provider.create(CasesViewModel::class.java)
-        setViewModel(args.countryName)
-    }
-
-    fun setViewModel(Country:String){
-         viewModel.getCaseForCountry(Country).observe(viewLifecycleOwner, Observer {case:Case ->
-
-             currentCase=case
-             country_name.text=case.country
-             country_flag
-             country_confirmed.text=case.cases.toString()
-             country_recovered.text=case.recovered.toString()
-             country_deaths.text=case.deaths.toString()
-             today_cases.text=case.todayCases.toString()
-             today_deaths.text=case.todayDeaths.toString()
-             per_million_cases.text=case.casesPerOneMillion.toString()
-             per_million_deaths.text=case.deathsPerOneMillion.toString()
-             per_million_test.text=case.testsPerOneMillion.toString()
-             isSubscribed=case.isSubscribed
-             Log.i("TAG","***************************${case.continent}")
-             print("***************************${case.continent}")
-         })
-
-
-    }
-
-
     override fun onCreateContextMenu(
         menu: ContextMenu,
         v: View,
@@ -107,16 +87,6 @@ class CountryInfoPage : Fragment() {
     ) {
         activity?.menuInflater?.inflate(R.menu.country_menu, menu)
 
-    }
-
-
-    private fun initViews(view: View) {
-        registerForContextMenu(view.menu_textView)
-        view.menu_textView.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                view.menu_textView.showContextMenu(20.0f, 20.0f)
-            }
-        }
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -133,6 +103,58 @@ class CountryInfoPage : Fragment() {
     }
 
 
+    private fun init() {
+        (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
+        viewModel = provider.create(CountryInfoPageViewModel::class.java)
+        viewModel2 = provider.create(CasesViewModel::class.java)
+        casesViewModel = provider.create(CasesViewModel::class.java)
+        setViewModel(args.countryName)
+
+    }
+
+    private fun setViewModel(Country:String){
+         viewModel.getCaseForCountry(Country).observe(viewLifecycleOwner, Observer {case:Case ->
+
+             Subscribed=case.isSubscribed
+             currentCase=case
+             country_name.text=case.country
+             country_flag
+             country_confirmed.text=case.cases.toString()
+             country_recovered.text=case.recovered.toString()
+             country_deaths.text=case.deaths.toString()
+             today_cases.text=case.todayCases.toString()
+             today_deaths.text=case.todayDeaths.toString()
+             per_million_cases.text=case.casesPerOneMillion.toString()
+             per_million_deaths.text=case.deathsPerOneMillion.toString()
+             per_million_test.text=case.testsPerOneMillion.toString()
+             Subscribed=case.isSubscribed
+
+             if(Subscribed){
+                 subscribe.setBackgroundResource(R.drawable.ic_unsubscribe);
+
+             }else{
+                 subscribe.setBackgroundResource(R.drawable.ic_subscribe);
+             }
+             print("---------------------------------------------------caseee"+case.isSubscribed.toString())
+
+         })
+
+
+    }
+
+    private fun initViews(view: View) {
+        registerForContextMenu(view.menu_textView)
+        view.menu_textView.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                view.menu_textView.showContextMenu(20.0f, 20.0f)
+            }
+        }
+    }
+
+   private fun Subscribe(subscribed: Boolean){
+       currentCase.isSubscribed=subscribed
+       viewModel2.updateCase(currentCase)
+   }
 
 
     }

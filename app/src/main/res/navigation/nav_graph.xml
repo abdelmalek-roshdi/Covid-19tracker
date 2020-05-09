@@ -50,5 +50,10 @@
         android:id="@+id/subscribedFragment"
         android:name="com.health.covid19.ui.main.SubscribedFragment"
         android:label="subscribed_fragment"
-        tools:layout="@layout/subscribed_fragment" />
+        tools:layout="@layout/subscribed_fragment" >
+
+        <action
+            android:id="@+id/action_subscribedFragment_to_countryInfoPage"
+            app:destination="@id/countryInfoPage" />
+    </fragment>
 </navigation>
