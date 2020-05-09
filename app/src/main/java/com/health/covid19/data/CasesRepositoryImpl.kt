@@ -2,7 +2,6 @@ package com.health.covid19.data
 
 import androidx.lifecycle.LiveData
 import com.health.covid19.enitites.Case
-import com.health.covid19.enitites.CountryInfo
 import com.health.covid19.net.CaseApi
 import com.health.covid19.room.CaseDao
 
@@ -30,7 +29,7 @@ class CasesRepositoryImpl constructor(private val caseApi: CaseApi, private val 
     }
 
     override suspend fun getSubscribedCases(): List<Case> {
-        return  caseDao.getSubcsribesCases()
+        return  caseDao.getSubscribedCases()
     }
 
     override suspend fun insertCase(case: Case) {

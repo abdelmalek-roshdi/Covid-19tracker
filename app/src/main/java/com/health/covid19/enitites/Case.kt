@@ -24,6 +24,6 @@ data class Case (
     var tests: Long = 0,
     var testsPerOneMillion: Long = 0,
     var continent: String= "",
-    var isSubcribed: Boolean = false
+    var isSubscribed: Boolean = false
 )
 

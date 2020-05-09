@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.health.covid19.dagger.scopes.ApplicationScope
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
+
 
 @ApplicationScope
 class ViewModelFactory @Inject constructor(
