@@ -13,6 +13,6 @@ interface CaseApi {
    @GET("countries/{path}")
    suspend fun getCasesForCountryName(@Path("path") countryName: String): Case
 
-   @GET("/all")
+   @GET("all")
    suspend fun getCasesForWorldWide(): WorldWide
 }
