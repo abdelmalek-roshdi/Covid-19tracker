@@ -25,7 +25,7 @@ class RefreshWorker(appContext: Context, params: WorkerParameters) :
 //                    casesRepository.insertAll(cases)
                     val subscribedCases = casesRepository.getSubscribedCases()
                     var i = 0
-                    if (subscribedCases.size > 0){
+                    if (subscribedCases.isNotEmpty()){
                         cases.forEach {
                             if (it.country.equals(subscribedCases[i].country)){
                                 val newCases = it.cases - subscribedCases[i].cases
