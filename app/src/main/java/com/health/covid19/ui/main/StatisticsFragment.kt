@@ -49,9 +49,7 @@ class StatisticsFragment: Fragment() {
 
          model2 = modelFactory.create(CasesViewModel::class.java)
         setView()
-        america.setOnClickListener {
-
-        }
+        setGlobal()
      }
 
     fun setList(AF:Long,AS:Long,AU:Long,EU:Long,NA:Long,SA:Long){

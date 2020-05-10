@@ -37,6 +37,7 @@ android {
 
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -104,6 +105,9 @@ dependencies {
 
     //  implementation  'com.github.hadiidbouk:ChartProgressBar-Android:2.0.6'
     //  implementation 'com.github.andhikayuana:simple-pie-chart-android:e7d9622aa9'
+    implementation "io.coil-kt:coil:0.9.1"
+    implementation "io.coil-kt:coil-base:0.9.1"
+
 
 
 }

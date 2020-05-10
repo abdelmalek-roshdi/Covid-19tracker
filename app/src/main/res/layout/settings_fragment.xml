@@ -98,17 +98,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eight_hours_radioButton" />
 
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_line_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UnsubscribeAll" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -120,17 +109,6 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="About"
-        android:textColor="#020202"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/UnsubscribeAll"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <RadioButton
         android:id="@+id/two_hours_radioButton"
@@ -175,18 +153,6 @@
         app:layout_constraintStart_toEndOf="@+id/UnsubscribeAll"
         app:layout_constraintTop_toTopOf="@+id/UnsubscribeAll"
         app:layout_constraintVertical_bias="0.6" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_about"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView15"

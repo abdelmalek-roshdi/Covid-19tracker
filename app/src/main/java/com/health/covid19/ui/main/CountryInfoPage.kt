@@ -11,11 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.ImageLoader
 import com.health.covid19.R
 import com.health.covid19.app.Covid19TrackerApp
 import com.health.covid19.enitites.Case
 import com.health.covid19.viewmodels.CasesViewModel
 import com.health.covid19.viewmodels.CountryInfoPageViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_info_page_fragment.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 import javax.inject.Inject
@@ -110,11 +112,14 @@ class CountryInfoPage : Fragment() {
         casesViewModel = provider.create(CasesViewModel::class.java)
         setViewModel(args.countryName)
 
+
+
     }
 
     private fun setViewModel(Country:String){
          viewModel.getCaseForCountry(Country).observe(viewLifecycleOwner, Observer {case:Case ->
 
+             setFlag(case.countryInfo.flag?:" ")
              Subscribed=case.isSubscribed
              currentCase=case
              country_name.text=case.country
@@ -154,6 +159,11 @@ class CountryInfoPage : Fragment() {
    private fun Subscribe(subscribed: Boolean){
        currentCase.isSubscribed=subscribed
        viewModel2.updateCase(currentCase)
+   }
+
+   fun setFlag(uri:String){
+     Picasso.get().load(uri)
+           .into(country_flag)
    }
 
 
