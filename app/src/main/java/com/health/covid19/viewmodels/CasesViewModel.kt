@@ -25,6 +25,8 @@ class CasesViewModel @Inject constructor(
         emit(casesRepository.getSubscribedCases())
     }
 
+    var  subscribedCountries = casesRepository.getSubscribedCountriesForViews()
+
 
     fun unsbcribeAllCountries(){
        viewModelScope.launch(Dispatchers.IO) {

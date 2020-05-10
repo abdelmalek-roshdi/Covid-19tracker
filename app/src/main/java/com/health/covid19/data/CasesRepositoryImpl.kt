@@ -40,6 +40,10 @@ class CasesRepositoryImpl constructor(private val caseApi: CaseApi, private val 
         caseDao.updateAll(cases)
     }
 
+    override fun getSubscribedCountriesForViews(): LiveData<List<Case>> {
+        return caseDao.getSubscribedCasesForViews()
+    }
+
     override suspend fun insertCase(case: Case) {
         caseDao.insert(case)
     }

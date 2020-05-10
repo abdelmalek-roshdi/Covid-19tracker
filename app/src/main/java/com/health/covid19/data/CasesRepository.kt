@@ -14,4 +14,5 @@ interface CasesRepository {
     suspend fun getSubscribedCases(): List<Case>
     suspend fun update(case: Case)
     suspend fun updateAll(cases: List<Case>)
+    fun getSubscribedCountriesForViews(): LiveData<List<Case>>
 }
