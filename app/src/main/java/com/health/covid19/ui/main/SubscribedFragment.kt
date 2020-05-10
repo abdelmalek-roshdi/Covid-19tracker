@@ -1,7 +1,6 @@
 package com.health.covid19.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,12 +59,11 @@ class SubscribedFragment : Fragment() {
         model.subscribedCountries.observe(requireActivity(),  Observer {
                 subscribedCases ->
             if (subscribedCases.count()>0){
-                emptySubscriptionList.isVisible=false
-                emptystateimg.isVisible=false
-            }else{ emptySubscriptionList.isVisible=true
-                emptystateimg.isVisible=true}
+                emptySubscriptionList?.isVisible=false
+                emptystateimg?.isVisible=false
+            }else{ emptySubscriptionList?.isVisible=true
+                emptystateimg?.isVisible=true}
             subscribedAdapter.submitList(subscribedCases)
-            Log.d("sub","sub")
 
         })
     }
