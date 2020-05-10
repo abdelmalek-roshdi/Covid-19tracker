@@ -5,10 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.health.covid19.R
@@ -17,6 +17,7 @@ import com.health.covid19.enitites.Case
 import com.health.covid19.ui.adapters.CountryRatesAdapter
 import com.health.covid19.viewmodels.CasesViewModel
 import kotlinx.android.synthetic.main.rates_fragment.view.*
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
@@ -62,10 +63,38 @@ class RatesFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
+        view.swipeLayout.setOnRefreshListener{
+           CoroutineScope(Dispatchers.IO).launch {
+               model.refreshDataAsync().await()
+               withContext(Dispatchers.Main){
+                   view.swipeLayout.isRefreshing = false
+               }
+           }
+        }
+
+        view.swipeLayout.setColorSchemeResources(
+            R.color.colorAccent,
+            R.color.card_header_text_color,
+            android.R.color.holo_orange_light
+        )
+
         countriesRecyclerView = view.countries_recyclerView
         countryRatesAdapter = CountryRatesAdapter()
         countriesRecyclerView.layoutManager = LinearLayoutManager(activity)
         countriesRecyclerView.adapter = countryRatesAdapter
+        view.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(prefix: String?): Boolean {
+                prefix?.let {
+                    countryRatesAdapter.submitList(model.searchCountry(it))
+
+                }
+                return true
+            }
+        } )
     }
 
     override fun onPause() {

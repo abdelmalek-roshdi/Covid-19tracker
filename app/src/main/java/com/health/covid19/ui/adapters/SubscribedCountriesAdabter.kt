@@ -1,20 +1,16 @@
 package com.health.covid19.ui.adapters
 
-import android.view.Gravity
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ListAdapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.health.covid19.R
-import com.health.covid19.app.Covid19TrackerApp
 import com.health.covid19.enitites.Case
-import com.health.covid19.ui.main.MainFragmentDirections
 import com.health.covid19.ui.main.SubscribedFragmentDirections
 import com.health.covid19.viewmodels.CasesViewModel
 import kotlinx.android.synthetic.main.subscribed_countries_item.view.*
@@ -30,7 +26,8 @@ class SubscribedCountriesAdapter(callback: DiffUtil.ItemCallback<Case> = diffCal
                     newItem: Case
                 ): Boolean {
                     return oldItem.country == newItem.country &&
-                            oldItem.countryInfo.id == newItem.countryInfo.id
+                            oldItem.countryInfo.id == newItem.countryInfo.id &&
+                            oldItem.isSubscribed == newItem.isSubscribed
                 }
 
                 override fun areContentsTheSame(
@@ -39,7 +36,8 @@ class SubscribedCountriesAdapter(callback: DiffUtil.ItemCallback<Case> = diffCal
                 ): Boolean {
                     return oldItem.country == newItem.country &&
                             oldItem.countryInfo.id == newItem.countryInfo.id &&
-                            oldItem.cases == newItem.cases
+                            oldItem.cases == newItem.cases &&
+                            oldItem.isSubscribed == newItem.isSubscribed
                 }
             }
     }
@@ -89,8 +87,8 @@ class SubscribedCountriesAdapter(callback: DiffUtil.ItemCallback<Case> = diffCal
 
     }
 
-    private fun unsubscribe(case:Case,position: Int){
-        case.isSubscribed=false
+    private fun unsubscribe(case:Case, position: Int){
+        case.isSubscribed = false
         model.updateCase(case)
 
         notifyItemRemoved(position)
