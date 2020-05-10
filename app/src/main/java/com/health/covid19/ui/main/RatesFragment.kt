@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.health.covid19.R
 import com.health.covid19.app.Covid19TrackerApp
 import com.health.covid19.enitites.Case
@@ -66,7 +65,7 @@ class RatesFragment : Fragment() {
     private fun initViews(view: View) {
         view.swipeLayout.setOnRefreshListener{
            CoroutineScope(Dispatchers.IO).launch {
-               model.refreshData().await()
+               model.refreshDataAsync().await()
                withContext(Dispatchers.Main){
                    view.swipeLayout.isRefreshing = false
                }

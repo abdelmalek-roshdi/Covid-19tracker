@@ -42,7 +42,7 @@ class CasesViewModel @Inject constructor(
         }
     }
 
-    fun refreshData(): Deferred<Unit> {
+    fun refreshDataAsync(): Deferred<Unit> {
        return viewModelScope.async {
             val cases: List<Case> = casesRepository.getCases()
             val subscribedCases = casesRepository.getSubscribedCases()
@@ -60,9 +60,7 @@ class CasesViewModel @Inject constructor(
             offlineCases.value?.let {
                 casesRepository.updateAll(it)
             } ?: run {
-                withContext(Dispatchers.IO){
                     casesRepository.insertAll(cases)
-                }
             }
         }
     }

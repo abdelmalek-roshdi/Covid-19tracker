@@ -27,18 +27,20 @@ class RefreshWorker(appContext: Context, params: WorkerParameters) :
                     var i = 0
                     if (subscribedCases.isNotEmpty()){
                         cases.forEach {
-                            if (it.country.equals(subscribedCases[i].country)){
+                            if (i < subscribedCases.size){
+                                if (it.country.equals(subscribedCases[i].country)){
                                 val newCases = it.cases - subscribedCases[i].cases
                                 val newRecovredCases = it.recovered - subscribedCases[i].recovered
                                 val newDeathCases = it.deaths - subscribedCases[i].deaths
                                 val notification = makeStatusNotification(applicationContext, it.country, newCases, newRecovredCases, newDeathCases)
                                 it.isSubscribed = true
-                               // casesRepository.insertCase(it)
+                                // casesRepository.insertCase(it)
                                 withContext(Dispatchers.Main){
                                     NotificationManagerCompat.from(applicationContext).notify(i, notification)
                                 }
                                 i++
-                            }
+                            }}
+
 
                         }
                     }
