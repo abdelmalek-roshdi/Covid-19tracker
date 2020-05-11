@@ -159,7 +159,7 @@ class CountryInfoPage : Fragment() {
         registerForContextMenu(view.menu)
         view.menu.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                view.menu_textView.showContextMenu(20.0f, 20.0f)
+                view.menu.showContextMenu(20.0f, 20.0f)
             }
         }
     }
