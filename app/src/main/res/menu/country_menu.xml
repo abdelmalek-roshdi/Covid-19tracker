@@ -14,6 +14,11 @@
         android:title="Settings">
 
     </item>
+    <item android:id="@+id/subscribe"
+        android:iconTint="@color/colorAccent"
+        android:title="Subscribed Countries">
+
+    </item>
 
 
 </menu>

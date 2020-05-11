@@ -33,11 +33,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:autofillHints="@string/country_name"
-        android:background="@color/colorAccent"
-        android:elevation="10dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
         android:minWidth="200dp"
-        android:queryHint="@string/country_name">
-    </SearchView>
+        android:queryHint="@string/country_name"></SearchView>
 
 
 </RelativeLayout>

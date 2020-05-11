@@ -19,6 +19,7 @@ import com.health.covid19.viewmodels.CasesViewModel
 import com.health.covid19.viewmodels.CountryInfoPageViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_info_page_fragment.*
+import kotlinx.android.synthetic.main.country_info_page_fragment.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 import javax.inject.Inject
 
@@ -57,23 +58,28 @@ class CountryInfoPage : Fragment() {
             subscribe.setBackgroundResource(R.drawable.ic_unsubscribe);
         }
         subscribe.setOnClickListener {
-            if(!Subscribed){
-                Subscribed=true
-                Subscribe(true)
-                subscribe.setBackgroundResource(R.drawable.ic_unsubscribe);
-                val myToast = Toast.makeText(context,"Subscribed!",Toast.LENGTH_SHORT)
-                myToast.setGravity(Gravity.CENTER,0,200)
-                myToast.show()
+            checkSubscribtion()
 
-            }else{
-                Subscribed=false
-                Subscribe(false)
-                subscribe.setBackgroundResource(R.drawable.ic_subscribe);
-                val myToast = Toast.makeText(context,"Unsubscribed!",Toast.LENGTH_SHORT)
-                myToast.setGravity(Gravity.CENTER,0,200)
-                myToast.show()
+        }
+    }
 
-            }
+    private fun checkSubscribtion(){
+
+        if(!Subscribed){
+            Subscribed=true
+            Subscribe(true)
+            subscribe.setBackgroundResource(R.drawable.ic_unsubscribe);
+            val myToast = Toast.makeText(context,"Subscribed!",Toast.LENGTH_SHORT)
+            myToast.setGravity(Gravity.CENTER,0,200)
+            myToast.show()
+
+        }else{
+            Subscribed=false
+            Subscribe(false)
+            subscribe.setBackgroundResource(R.drawable.ic_subscribe);
+            val myToast = Toast.makeText(context,"Unsubscribed!",Toast.LENGTH_SHORT)
+            myToast.setGravity(Gravity.CENTER,0,200)
+            myToast.show()
 
         }
     }
@@ -100,6 +106,10 @@ class CountryInfoPage : Fragment() {
                 true
             }
 
+            R.id.subscribe -> {
+                findNavController().navigate(R.id.action_countryInfoPage_to_subscribedFragment)
+                true
+            }
             else -> super.onContextItemSelected(item)
         }
     }
@@ -111,8 +121,6 @@ class CountryInfoPage : Fragment() {
         viewModel2 = provider.create(CasesViewModel::class.java)
         casesViewModel = provider.create(CasesViewModel::class.java)
         setViewModel(args.countryName)
-
-
 
     }
 
@@ -140,7 +148,7 @@ class CountryInfoPage : Fragment() {
              }else{
                  subscribe.setBackgroundResource(R.drawable.ic_subscribe);
              }
-             print("---------------------------------------------------caseee"+case.isSubscribed.toString())
+
 
          })
 
@@ -148,8 +156,8 @@ class CountryInfoPage : Fragment() {
     }
 
     private fun initViews(view: View) {
-        registerForContextMenu(view.menu_textView)
-        view.menu_textView.setOnClickListener {
+        registerForContextMenu(view.menu)
+        view.menu.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 view.menu_textView.showContextMenu(20.0f, 20.0f)
             }

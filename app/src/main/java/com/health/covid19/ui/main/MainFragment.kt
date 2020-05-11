@@ -71,7 +71,7 @@ class MainFragment : Fragment() {
                 true
             }
             R.id.settings -> {
-                findNavController().navigate(R.id.action_countryInfoPage_to_settingsFragment)
+                findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
                 true
             }
 

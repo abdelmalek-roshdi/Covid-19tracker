@@ -2,11 +2,13 @@ package com.health.covid19.ui.main
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.health.covid19.R
 import com.health.covid19.app.Covid19TrackerApp
@@ -54,6 +56,9 @@ class SettingsFragment : Fragment() {
 
         view.UnsubscribeAll.setOnClickListener{
             model.unsbcribeAllCountries()
+            val myToast = Toast.makeText(context,"Unsubscribed all!", Toast.LENGTH_SHORT)
+            myToast.setGravity(Gravity.CENTER,0,200)
+            myToast.show()
         }
 
         view.two_hours_radioButton.setOnClickListener {
