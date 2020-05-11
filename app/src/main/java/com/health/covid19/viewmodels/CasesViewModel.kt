@@ -8,11 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.health.covid19.data.CasesRepository
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.CountryInfo
+import com.health.covid19.util.Connectivity
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class CasesViewModel @Inject constructor(
-    private val casesRepository: CasesRepository
+    private val casesRepository: CasesRepository, private val connectivity: Connectivity
 ) : ViewModel() {
 
     var cases: LiveData<List<Case>> = liveData {
@@ -44,23 +45,25 @@ class CasesViewModel @Inject constructor(
 
     fun refreshDataAsync(): Deferred<Unit> {
        return viewModelScope.async {
-            val cases: List<Case> = casesRepository.getCases()
-            val subscribedCases = casesRepository.getSubscribedCases()
-            var i = 0
-            if (subscribedCases.isNotEmpty()) {
-                cases.forEach {
-                    if (i < subscribedCases.size){
-                        if (it.country.equals(subscribedCases[i].country)) {
-                            it.isSubscribed = true
-                            i++
+            if (connectivity.checkForConnectivity()){
+                val cases: List<Case> = casesRepository.getCases()
+                val subscribedCases = casesRepository.getSubscribedCases()
+                var i = 0
+                if (subscribedCases.isNotEmpty()) {
+                    cases.forEach {
+                        if (i < subscribedCases.size){
+                            if (it.country.equals(subscribedCases[i].country)) {
+                                it.isSubscribed = true
+                                i++
+                            }
                         }
                     }
                 }
-            }
-            offlineCases.value?.let {
-                casesRepository.updateAll(it)
-            } ?: run {
+                offlineCases.value?.let {
+                    casesRepository.updateAll(it)
+                } ?: run {
                     casesRepository.insertAll(cases)
+                }
             }
         }
     }
