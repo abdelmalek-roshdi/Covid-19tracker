@@ -1,5 +1,6 @@
 package com.health.covid19.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -52,20 +53,22 @@ class StatisticsViewModel @Inject constructor (
         val globalCase:Case=Case(country = "worldwide")
         val global : LiveData<Case>
 
-
-
         global = liveData(Dispatchers.IO) {
             if (connectivity.checkForConnectivity()){
+                Log.i("OMNIA","OnLINE "+connectivity.checkForConnectivity())
             StatisticsRepo.getWorlWidw()?.let {
 
                 globalCase.cases=it["cases"]?.roundToLong()?:0
                 globalCase.recovered=it["recovered"]?.roundToLong()?:0
                 globalCase.deaths=it["deaths"]?.roundToLong()?:0
                 casesrepo.insertCase(globalCase)
-                emit(globalCase)  }}
+
+                emit(globalCase)  }
+            }
 
             else{
                 casesrepo.getCaseForCountryOffline("worldwide").let {
+                 Log.i("OMNIA","OFFLINE")
 
                     emit(it?:Case()) }
             }

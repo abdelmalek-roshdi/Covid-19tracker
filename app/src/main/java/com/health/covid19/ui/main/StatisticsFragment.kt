@@ -46,7 +46,7 @@ class StatisticsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity?.application as Covid19TrackerApp).covid19TrackerComponent.inject(this)
          model = modelFactory.create(StatisticsViewModel::class.java)
-
+         model.getworldWide()
          model2 = modelFactory.create(CasesViewModel::class.java)
         setView()
         setGlobal()
