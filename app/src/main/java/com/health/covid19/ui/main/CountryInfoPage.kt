@@ -1,9 +1,7 @@
 package com.health.covid19.ui.main
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -11,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.ImageLoader
 import com.health.covid19.R
 import com.health.covid19.app.Covid19TrackerApp
 import com.health.covid19.enitites.Case
@@ -156,8 +153,8 @@ class CountryInfoPage : Fragment() {
     }
 
     private fun initViews(view: View) {
-        registerForContextMenu(view.menu)
-        view.menu.setOnClickListener {
+        registerForContextMenu(view.menuIcon)
+        view.menuIcon.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 view.menu_textView.showContextMenu(20.0f, 20.0f)
             }
