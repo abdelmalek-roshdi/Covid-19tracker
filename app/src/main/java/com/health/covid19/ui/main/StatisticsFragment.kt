@@ -119,10 +119,10 @@ class StatisticsFragment: Fragment() {
         chart.setPieChartData(data);
     }
     fun setGlobal(){
-        model.getworldWide().observe(viewLifecycleOwner, Observer {case: WorldWide ->
-            globalConfirmed.text= case["cases"].toString()
-            globalRecovered.text= case["recovered"].toString()
-            globalDeaths.text= case["deaths"].toString()
+        model.getworldWide().observe(viewLifecycleOwner, Observer {case: Case ->
+            globalConfirmed.text= case.cases.toString()
+            globalRecovered.text= case.recovered.toString()
+            globalDeaths.text= case.deaths.toString()
         })
     }
 

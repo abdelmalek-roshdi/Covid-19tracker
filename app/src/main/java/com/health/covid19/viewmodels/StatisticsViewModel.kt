@@ -3,17 +3,21 @@ package com.health.covid19.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.health.covid19.data.CasesRepository
 import com.health.covid19.data.StatisticsRepository
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.WorldWide
 import com.health.covid19.util.Connectivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import javax.inject.Inject
+import kotlin.math.roundToLong
 
 class StatisticsViewModel @Inject constructor (
 
-    private val StatisticsRepo: StatisticsRepository,private val connectivity: Connectivity
+    private val StatisticsRepo: StatisticsRepository,private val connectivity: Connectivity, private val casesrepo: CasesRepository
+
 
     ): ViewModel() {
 
@@ -43,14 +47,35 @@ class StatisticsViewModel @Inject constructor (
         return cases.map{ case->case.cases}?.reduce{ acc, cases -> acc+cases}
    }
 
-    fun  getworldWide(): LiveData<WorldWide>{
-        val global : LiveData<WorldWide> = liveData(Dispatchers.IO) {
-            StatisticsRepo.getWorlWidw()?.let { emit(it) }
+    fun  getworldWide(): LiveData<Case>{
+
+        val globalCase:Case=Case(country = "worldwide")
+        val global : LiveData<Case>
+
+
+
+        global = liveData(Dispatchers.IO) {
+            if (connectivity.checkForConnectivity()){
+            StatisticsRepo.getWorlWidw()?.let {
+
+                globalCase.cases=it["cases"]?.roundToLong()?:0
+                globalCase.recovered=it["recovered"]?.roundToLong()?:0
+                globalCase.deaths=it["deaths"]?.roundToLong()?:0
+                casesrepo.insertCase(globalCase)
+                emit(globalCase)  }}
+
+            else{
+                casesrepo.getCaseForCountryOffline("worldwide").let {
+
+                    emit(it?:Case()) }
+            }
+
+
         }
-        return  global
+
+        return global
+        }
+
+
     }
 
-
-
-
-}

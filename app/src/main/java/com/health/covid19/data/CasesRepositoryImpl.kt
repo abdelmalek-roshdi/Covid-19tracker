@@ -21,7 +21,7 @@ class CasesRepositoryImpl constructor(private val caseApi: CaseApi, private val 
     }
 
     override suspend fun getCaseForCountryOffline(countryName: String): Case? {
-        return null
+        return caseDao.getCountryCaseByname(countryName)
     }
 
     override suspend fun insertAll(cases: List<Case>) {
