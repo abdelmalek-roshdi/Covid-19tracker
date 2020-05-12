@@ -7,12 +7,13 @@ import com.health.covid19.data.CasesRepository
 import com.health.covid19.data.StatisticsRepository
 import com.health.covid19.enitites.Case
 import com.health.covid19.enitites.WorldWide
+import com.health.covid19.util.Connectivity
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class StatisticsViewModel @Inject constructor (
 
-    private val StatisticsRepo: StatisticsRepository
+    private val StatisticsRepo: StatisticsRepository,private val connectivity: Connectivity
 
     ): ViewModel() {
 

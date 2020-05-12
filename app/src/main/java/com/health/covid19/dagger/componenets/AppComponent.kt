@@ -8,6 +8,7 @@ import com.health.covid19.dagger.modules.ServiceModule
 import com.health.covid19.dagger.scopes.ApplicationScope
 import com.health.covid19.dagger.viewmodelfactory.ViewModelModule
 import com.health.covid19.ui.main.*
+import com.health.covid19.util.Connectivity
 import com.health.covid19.workmanager.RefreshWorker
 import dagger.Component
 
@@ -23,4 +24,5 @@ interface AppComponent{
     fun inject(subscribedFragment: SubscribedFragment)
     fun inject(refreshWorker: RefreshWorker)
     fun inject(covid19TrackerApp: Covid19TrackerApp)
+    fun inject(connectivity: Connectivity)
 }

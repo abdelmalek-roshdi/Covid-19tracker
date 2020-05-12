@@ -24,8 +24,6 @@ import javax.inject.Inject
 class RatesFragment : Fragment() {
     private lateinit var countriesRecyclerView: RecyclerView
     private lateinit var countryRatesAdapter: CountryRatesAdapter
-    private lateinit var layoutManager: LinearLayoutManager
-    private var index:Int = 0
 
     @Inject
     lateinit var modelFactory: ViewModelProvider.Factory

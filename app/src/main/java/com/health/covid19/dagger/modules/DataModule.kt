@@ -11,6 +11,7 @@ import com.health.covid19.data.*
 import com.health.covid19.net.CaseApi
 import com.health.covid19.room.CaseDao
 import com.health.covid19.room.LocalDB
+import com.health.covid19.util.Connectivity
 import com.health.covid19.util.sharedPreferencesName
 import dagger.Module
 import dagger.Provides
@@ -50,5 +51,8 @@ class DataModule {
         Context.MODE_PRIVATE)
 
 
+    @Provides
+    @ApplicationScope
+    fun providesConnectivity(app:Application) = Connectivity(app)
 
 }

@@ -1,7 +1,9 @@
 package com.health.covid19.app
 
 import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
+import android.net.NetworkInfo
 import androidx.work.*
 import com.health.covid19.dagger.componenets.AppComponent
 import com.health.covid19.dagger.componenets.DaggerAppComponent
