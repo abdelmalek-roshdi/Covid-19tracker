@@ -19,10 +19,10 @@ data class Case (
     var recovered: Long = 0,
     var active: Long = 0,
     var critical: Long = 0,
-    var casesPerOneMillion: Long = 0,
-    var deathsPerOneMillion: Long = 0,
+    var casesPerOneMillion: Double = 0.0,
+    var deathsPerOneMillion: Double = 0.0,
     var tests: Long = 0,
-    var testsPerOneMillion: Long = 0,
+    var testsPerOneMillion: Double = 0.0,
     var continent: String= "",
     var isSubscribed: Boolean = false
 )
