@@ -89,8 +89,8 @@ class RatesFragment : Fragment() {
 
             override fun onQueryTextChange(prefix: String?): Boolean {
                 prefix?.let {
-                    countryRatesAdapter.submitList(model.searchCountry(it))
-
+                    if (prefix.none { it !in 'A'..'Z' && it !in 'a'..'z' })
+                        countryRatesAdapter.submitList(model.searchCountry(it))
                 }
                 return true
             }
