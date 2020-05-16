@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,6 +63,7 @@ class RatesFragment : Fragment() {
 
     private fun initViews(view: View) {
         view.swipeLayout.setOnRefreshListener{
+           //you can use viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO){}
            CoroutineScope(Dispatchers.IO).launch {
                model.refreshDataAsync().await()
                withContext(Dispatchers.Main){

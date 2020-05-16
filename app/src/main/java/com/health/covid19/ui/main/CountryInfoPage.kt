@@ -167,6 +167,7 @@ class CountryInfoPage : Fragment() {
    }
 
    fun setFlag(uri:String){
+     if (uri.isNotEmpty())
      Picasso.get().load(uri)
            .into(country_flag)
    }
